@@ -14,11 +14,14 @@ class AppPages {
       page: () => const FramePage(),
       middlewares: [AuthMiddleWare()],
     ),
+    // 视频详情页
     GetPage(
       name: AppRoutes.videoDetail,
       page: () => VideoDetailPage(),
     ),
     //登录页
-    GetPage(name: AppRoutes.login, page: () => LoginPage())
+    GetPage(name: AppRoutes.login,
+        page: () => LoginPage()
+    )
   ];
 }

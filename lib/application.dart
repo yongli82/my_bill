@@ -22,6 +22,7 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
       };
 }
 
+// 全局监听路由 打印日志
 MyRouteObserver<PageRoute> myRouteObserver = MyRouteObserver<PageRoute>();
 
 //监听单个页面
@@ -44,26 +45,31 @@ class Application extends StatelessWidget {
         builder: (context) {
           //这句不能少，更新context
           ScreenUtil.setContext(context);
-          return MediaQuery(
-            //Setting font does not change with system font size
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            // 刷新组件
-            child: RefreshConfiguration(
-              headerBuilder: () => const ClassicHeader(),
-              footerBuilder: () => const ClassicFooter(),
-              child: GetMaterialApp(
-                navigatorObservers: [
-                  // myRouteObserver,
-                  routeObserver,
-                ],
-                scrollBehavior: MyCustomScrollBehavior(),
-                //全局loading
-                builder: EasyLoading.init(),
-                initialRoute: AppRoutes.frame,
-                getPages: AppPages.pages,
-              ),
-            ),
-          );
+          return buildMediaQuery(context);
         });
+  }
+
+  // 使用GetX框架构建
+  MediaQuery buildMediaQuery(BuildContext context) {
+    return MediaQuery(
+          //Setting font does not change with system font size
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          // 刷新组件
+          child: RefreshConfiguration(
+            headerBuilder: () => const ClassicHeader(),
+            footerBuilder: () => const ClassicFooter(),
+            child: GetMaterialApp(
+              navigatorObservers: [
+                // myRouteObserver,
+                routeObserver,
+              ],
+              scrollBehavior: MyCustomScrollBehavior(),
+              //全局loading
+              builder: EasyLoading.init(),
+              initialRoute: AppRoutes.frame,
+              getPages: AppPages.pages,
+            ),
+          ),
+        );
   }
 }

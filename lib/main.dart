@@ -9,13 +9,14 @@ import 'global.dart';
 
 /// 启动程序
 Future<void> main() async {
+  //WidgetsFlutterBinding正是绑定widget 框架和Flutter 引擎的桥梁
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   //启动页
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // 初始化全局配置
   await Global.init();
   // 启动应用
-  runApp( const Application());
+  runApp(const Application());
   //关闭启动页
   FlutterNativeSplash.remove();
 }

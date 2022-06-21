@@ -20,10 +20,20 @@ class AppRoutes {
   /// 通知
   static const String notice = "/notice";
 
+  //GetX的路由跳转参考
+  // https://github.com/jonataslaw/getx/blob/master/documentation/zh_CN/route_management.md#navigation-with-named-routes
+  // 导航到下一个页面
+  // Get.toNamed("/NextScreen");
+
+  // 浏览并删除前一个页面。
+  // Get.offNamed("/NextScreen");
+
+  // 浏览并删除所有以前的页面。
+  // Get.offAllNamed("/NextScreen");
+
   /// 跳转视频详情
   static void toVideoDetail(String vid) {
-    Get.toNamed(videoDetail,
-        arguments: {Constants.VID: vid},preventDuplicates: false);
+    Get.toNamed(videoDetail, arguments: {Constants.VID: vid}, preventDuplicates: false);
   }
 
   /// 跳转登录
